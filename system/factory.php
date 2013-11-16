@@ -1,14 +1,22 @@
 <?php 
 
-class FAFactory{
+class FAFactory
+{		
+	private static function getInstance($name, $type, $prefix='FA')
+	{		
+		static $instances = array();
+		  
+		$class_name = strtolower($prefix.$type.$name);
+		
+		if (isset($instances[$class_name])){
+			return $instances[$class_name];
+		}
+		
+		if (!class_exists($class_name, true)){
+			throw new Exception(array('Class does not exists'));
+		}
 	
-	public static function getURI(){}
-	
-	public static function getController(){}
-	
-	public static function getModel(){}
-	
-	public static function getView(){}
-	
-	private static function getInstance(){}
+		$instances[$class_name] = new $class_name(); 
+		return $instances[$class_name];
+	}
 }
