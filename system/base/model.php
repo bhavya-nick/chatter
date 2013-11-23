@@ -1,9 +1,24 @@
 <?php
 class FAModel
 {
+	protected $collection = null;
+	protected $db		  = null;
+	protected $_name	  = '';
+	
+	function __construct()
+	{
+		$this->db = FAFactory::getDB();
+		if (empty($this->_name)){
+			$this->_name = $this->getName();
+			//TODO : generate error if still name not found
+		}
+		
+		$this->collection = $this->db->selectCollection($this->_name);
+	}
+	
 	public function getName()
 	{
-		return $this->_name;
+		$name = $this->_name;
 		if (empty( $name ))
 		{
 			$r = null;
@@ -16,16 +31,13 @@ class FAModel
 		return $name;
 	}
 	
-	public function select()
+	public function find()
 	{
-		$name = $this->getName();
-		db.$name.find();
+		return $this->collection->find();
 	}
 	
-	public function insert()
+	public function insert($data)
 	{
-		
-		$name = $this->getName();
-		db.$name.insert();
+		return $this->collection->insert($data);
 	}
 }

@@ -2,7 +2,7 @@
 
 class FAFactory
 {		
-	private static function getInstance($name, $type, $prefix='FA')
+	public static function getInstance($name, $type, $prefix='FA')
 	{		
 		static $instances = array();
 		  
@@ -18,5 +18,17 @@ class FAFactory
 	
 		$instances[$class_name] = new $class_name(); 
 		return $instances[$class_name];
+	}
+	
+	public static function getDB()
+	{
+		static $instance = null;
+		
+		if ($instance == null){
+			$client 	= new MongoClient();
+			$instance	= $client->selectDB('chatter');
+		}
+		
+		return $instance;
 	}
 }
