@@ -38,7 +38,7 @@ class FAView
 			$tpl = $this->_default_tpl;
 		}
 		
-		$template = CHATTER_PATH_TEMPLATES.'/'.$this->getName().'/'.$tpl.'.php';
+		$template = FA_PATH_TEMPLATES.'/'.$this->getName().'/'.$tpl.'.php';
 		
 		if (!file_exists($template)){
 			throw new Exception("Template Not Found");
