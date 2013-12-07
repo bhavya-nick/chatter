@@ -31,4 +31,18 @@ class FAFactory
 		
 		return $instance;
 	}
+	
+	/**
+	 * @return FASession
+	 */
+	public static function getSession()
+	{
+		static $instance = null;
+		
+		if ($instance == null){			
+			$instance	= new FASession();
+		}
+		
+		return $instance;
+	}
 }

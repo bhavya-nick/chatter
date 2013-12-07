@@ -40,4 +40,19 @@ class FAModel
 	{
 		return $this->collection->insert($data);
 	}
+	
+	public function save($data)
+	{
+		return $this->collection->save($data);
+	}
+	
+	public function findOne($data)
+	{
+		return $this->collection->findOne($data);
+	}
+	
+	public function remove($data)
+	{
+		return $this->collection->remove($data);
+	}
 }
