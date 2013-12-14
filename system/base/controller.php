@@ -3,6 +3,18 @@ class FAController
 {
 	protected $_name;
 	
+	/**
+	 * @var FAInput
+	 */
+	protected $_input;
+	
+	public function __construct($config = array())
+	{
+		if(isset($config['input'])){
+			$this->_input = $config['input'];
+		}
+	}
+	
 	function getModel()
 	{
 		return FAFactory::getInstance($this->name, 'model');

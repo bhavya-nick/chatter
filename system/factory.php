@@ -2,7 +2,7 @@
 
 class FAFactory
 {		
-	public static function getInstance($name, $type, $prefix='FA')
+	public static function getInstance($name, $type, $config = array(), $prefix='FA')
 	{		
 		static $instances = array();
 		  
@@ -16,7 +16,7 @@ class FAFactory
 			throw new Exception(array('Class does not exists'));
 		}
 	
-		$instances[$class_name] = new $class_name(); 
+		$instances[$class_name] = new $class_name($config); 
 		return $instances[$class_name];
 	}
 	
@@ -40,7 +40,21 @@ class FAFactory
 		static $instance = null;
 		
 		if ($instance == null){			
-			$instance	= new FASession();
+			$instance	= FASession::getInstance();
+		}
+		
+		return $instance;
+	}
+	
+	/**
+	 * @return FAInput
+	 */
+	public static function getInput()
+	{
+		static $instance = null;
+		
+		if ($instance == null){			
+			$instance	= FAInput::getInstance();
 		}
 		
 		return $instance;

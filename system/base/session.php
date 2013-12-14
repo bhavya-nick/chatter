@@ -5,7 +5,7 @@ class FASession
 	protected $model;
 	protected $maxTime;
 
-	public function __construct() 
+	private function __construct() 
 	{
 		$this->maxTime = get_cfg_var("session.gc_maxlifetime");
 		$this->model = FAFactory::getInstance('session', 'model');
@@ -19,6 +19,17 @@ class FASession
 			array($this, 'gc')
 		);
 		session_start();
+	}
+
+	public static function getInstance()
+	{
+		static $instance = null;
+		
+		if ($instance == null){			
+			$instance	= new FASession();
+		}
+		
+		return $instance;
 	}
 	
 	public function open() 
