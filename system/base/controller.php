@@ -27,11 +27,16 @@ class FAController
 	{
 		//check existance of task and then execute that else execute default task
 		if (method_exists($this, $task)){
-			$this->$task();
+			$executeResult = $this->$task();
 		}
 		else{
 			//raise error or throw exception
 			throw new Exception("Exception Generated. Task not executed.");
+		}
+		
+		if ($executeResult === false){
+			//TODO : set header to redirect to a url
+			return ;
 		}
 		
 		$view = $this->getView();
