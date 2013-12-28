@@ -17,7 +17,7 @@ class FAController
 	
 	function getModel()
 	{
-		return FAFactory::getInstance($this->name, 'model');
+		return FAFactory::getInstance($this->getName(), 'model');
 	}
 	
 	function execute($task)
