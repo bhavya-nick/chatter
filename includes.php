@@ -11,3 +11,4 @@ FALoader::autoloadfolder(__DIR__.'/system/base');
 FALoader::autoloadfolder(__DIR__.'/models', 'FAModel');
 FALoader::autoloadfolder(__DIR__.'/controllers', 'FAController');
 FALoader::autoloadfolder(__DIR__.'/views', 'FAView');
+FALoader::autoloadfolder(__DIR__.'/helpers', 'FAHelper');

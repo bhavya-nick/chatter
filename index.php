@@ -9,8 +9,8 @@ require_once __DIR__.'/includes.php';
 $session = FAFactory::getSession();
 $input	 = FAFactory::getInput();
 
-$view   = isset($_REQUEST['view'])   ? $_REQUEST['view']   : '';
-$task	= isset($_REQUEST['task'])   ? $_REQUEST['task']   : '';
+$view = $input->get('view', '');
+$task = $input->get('task', '');
 
 
 try {

@@ -17,7 +17,10 @@ class FAController
 	
 	function getModel()
 	{
-		return FAFactory::getInstance($this->getName(), 'model');
+		if (empty($this->_name)){
+			$this->_name = $this->getName();
+		}
+		return FAFactory::getInstance($this->_name, 'model');
 	}
 	
 	function execute($task)
