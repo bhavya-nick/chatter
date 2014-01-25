@@ -12,7 +12,8 @@ class FAControllerUser extends FAController
 		// user data is empty
 		if (empty($user))
 		{
-			//TODO :redirect to login page
+			$this->setRedirect('index.php?option=chatter&view=user&task=loginform');
+			return false;
 		}
 
 		//verification passed
@@ -21,9 +22,6 @@ class FAControllerUser extends FAController
 		$verified = FAHelperUser::verifyCredentials($user['username'], $user['password'], $isEmail); 
 		if( $verified === true 
 						&&  FAHelperUser::isBlock($user['username']) === false){
-
-			
-			//TODO:redirection
 			
 			$find = array('username'=>$user['username']);
 			if ($isEmail){
@@ -39,10 +37,15 @@ class FAControllerUser extends FAController
 		
 			$user_id = (string) new MongoId($user_record['_id']); 
 			$session->set('user_id', $user_id);
+					
+			$this->setRedirect('index.php?option=chatter&view=user&task=dashboard');
+			return false;
 		}
 		else
 		{
 			//TODO : Login failed !
+			$this->setRedirect('index.php?option=chatter&view=user&task=loginform');
+			return false;
 		}
 	}
 	
@@ -60,8 +63,14 @@ class FAControllerUser extends FAController
 	{
 		// TODO : will understand it later 
 		session_destroy();
-
 		//does session checking is required to make sure whether any user is logged-in or not???
-		//TODO : redirect user to some page after logout
+
+		$this->setRedirect('index.php?option=chatter&view=user&task=loginform');
+		return false;
+	}
+	
+	public function loginform()
+	{
+		return true;
 	}
 }

@@ -7,6 +7,8 @@ class FAController
 	 * @var FAInput
 	 */
 	protected $_input;
+	protected $redirect;
+	protected $message;
 	
 	public function __construct($config = array())
 	{
@@ -35,7 +37,7 @@ class FAController
 		}
 		
 		if ($executeResult === false){
-			//TODO : set header to redirect to a url
+			$this->redirect();
 			return ;
 		}
 		
@@ -68,6 +70,18 @@ class FAController
 		}
 
 		return $this->_name;
+	}
+	
+	public function redirect()
+	{
+		header('Location: ' . $this->redirect);
+	}
+	
+	public function setRedirect($url, $message = '')
+	{
+		$this->redirect = $url;
+		$this->message  = $message;
+		return $this;
 	}
 	
 }
