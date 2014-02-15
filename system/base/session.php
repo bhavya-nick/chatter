@@ -57,6 +57,16 @@ class FASession
 	public function destroy($id) 
 	{
 		$this->model->remove(array("_id" => $id));
+		
+		$_SESSION = array();
+		if (ini_get("session.use_cookies")) {
+  	  		$params = session_get_cookie_params();
+	   		setcookie(session_name(), '', time() - 42000,
+		        $params["path"], $params["domain"],
+		        $params["secure"], $params["httponly"]
+   			);
+		}
+
 		return true;
 	}
 	
@@ -79,5 +89,19 @@ class FASession
 		}
 		
 		return $default;		
+	}
+	
+	public function clear($name)
+	{
+		if (isset($_SESSION[$name])){
+			unset($_SESSION[$name]);
+		}
+		
+		return true;
+	}
+	
+	public function getId()
+	{
+		return session_id();
 	}
 }

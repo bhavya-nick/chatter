@@ -7,6 +7,8 @@ class FAController
 	 * @var FAInput
 	 */
 	protected $_input;
+	protected $redirect;
+	protected $message;
 	
 	public function __construct($config = array())
 	{
@@ -27,11 +29,16 @@ class FAController
 	{
 		//check existance of task and then execute that else execute default task
 		if (method_exists($this, $task)){
-			$this->$task();
+			$executeResult = $this->$task();
 		}
 		else{
 			//raise error or throw exception
 			throw new Exception("Exception Generated. Task not executed.");
+		}
+		
+		if ($executeResult === false){
+			$this->redirect();
+			return ;
 		}
 		
 		$view = $this->getView();
@@ -63,6 +70,18 @@ class FAController
 		}
 
 		return $this->_name;
+	}
+	
+	public function redirect()
+	{
+		header('Location: ' . $this->redirect);
+	}
+	
+	public function setRedirect($url, $message = '')
+	{
+		$this->redirect = $url;
+		$this->message  = $message;
+		return $this;
 	}
 	
 }

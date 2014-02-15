@@ -21,6 +21,7 @@ class FAModelUser extends FAModel
 		
 		unset($user['_id']);
 		
+		$user['password']		= FAHelperUser::convertPassword($user['password']);
 		$user['activation'] 	= FAHelperUser::generateActivationToken($user['email'], $user['password']);
 		$user['block'] 			= 1;
 		$user['logged_in'] 		= 0;
