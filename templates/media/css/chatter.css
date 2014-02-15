@@ -1,0 +1,85 @@
+body{
+	color: #FFFFFF;
+}
+
+.chatter-container{
+	height: 100%;	
+}
+
+.chatter-sidebar{
+	height: inherit;
+	background-color: #333333;
+}
+
+.chatter-sidebar .accordion-group{	
+	border-radius: 0px;
+	border-top: 0px;
+	border-right: 0px;	
+	border-left: 0px;
+	border-bottom: 1.5px solid #222222;
+}
+
+.chatter-sidebar .accordion-inner{	
+	border-radius: 0px;
+	border-bottom: 0px;
+	border-right: 0px;	
+	border-left: 0px;
+	border-top: 1.5px solid #222222;
+}
+
+#avatar{
+	height:160px;	
+	background-color: #2E2E2E;
+}
+
+#avatar .avatar-bottom{
+	background-color: #202020;
+    bottom: 9px;
+    font-size: 12px;
+    opacity: 0.7;
+    position: relative;
+}
+
+#accordion-home i{
+	margin-right: 5px;
+}
+	
+#accordion-home a{
+	color: #CCCCCC;
+	font-size: 12px;
+}
+
+#collapseCircles{
+	background-color: #202020;
+}
+
+#collapseCircles ul{
+	margin: 0px;
+	max-height: 150px;
+	overflow: auto;
+}
+
+#collapseCircles .accordion-inner{
+	padding: 0px;
+}
+
+#collapseCircles li{
+	padding-left: 50px;
+	line-height: 36px;
+	border-bottom: 1px outset #000000;
+}
+
+#collapseCircles li:last-child{
+	border-bottom: 0px;
+}
+	
+#collapseCircles li.active,
+#collapseCircles li:hover{
+	background-color: #252525;
+}
+
+
+
+#main-body {
+	color: #333333;
+}

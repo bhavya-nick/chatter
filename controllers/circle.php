@@ -7,6 +7,11 @@ class FAControllerCircle extends FAController
 		return true;
 	}
 	
+	public function edit()
+	{
+		return true;
+	}
+	
 	function save()
 	{
 		$data = $this->_input->post('chatter');
